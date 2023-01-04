@@ -1,0 +1,56 @@
+.titte{
+    margin-top: 20px;
+    margin-left: 50px;
+    border-bottom: 4px solid green;
+}
+h2
+{
+    margin-top: 5%;
+    margin-left: 0%;
+    color:blue;;
+}
+
+.toolbar{
+    background-color: blue;
+    width: 95%;
+}
+.mat-card{
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.mat-card-content{
+    margin-right: 5%;
+}
+td, th{
+    text-align: center;
+    padding: 10px;
+    display: table-cell;
+    vertical-align: inherit;
+    border-top:1px solid black;
+}
+.table{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+::ng-deep table {
+    width: 100%;
+}
+.barNavigation{
+    margin-left: 35%;
+}
+.TAB_MONNIE1{
+
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+.TAB_MONNIE2{
+    margin-left: 10%;
+    margin-right: 10%;
+
+    margin-bottom: 5%;
+}

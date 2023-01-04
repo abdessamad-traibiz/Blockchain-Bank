@@ -1,0 +1,55 @@
+mat-tab-group {
+    display: flex;
+    padding: 15px 80px;
+    flex-direction: column;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.login-form mat-form-field, .login-form mat-checkbox {
+    padding: 15px 0px;
+}
+
+.primary-login-button {
+    width: 100%;
+    align-self: center;
+    margin: 25px 0 10px 0;
+    padding: 5px;
+}
+
+.create-warning-label {
+    color: #f44336;
+    font-size: 12px;
+    display: block;
+    text-align: center;
+}
+
+::ng-deep .alert-snackbar {
+    background: #f44336;
+    color: #ffffff;
+}
+
+::ng-deep .alert-snackbar button {
+    color: #e6e6e6;
+}
+mat-form-field, mat-checkbox{
+    margin-left: 3%;
+}
+
+app-common-loading-animation {
+    margin-bottom: 10px;
+}
+
+a {
+    align-self: center;
+    text-decoration: none;
+    color: #25AAF7;
+}
+
+.other-link {
+    margin-top: 5px;
+}

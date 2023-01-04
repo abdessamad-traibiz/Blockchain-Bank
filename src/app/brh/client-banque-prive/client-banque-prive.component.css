@@ -1,0 +1,212 @@
+@import "../../sogebank/cartes-sogebank/cartes-sogebank.component.css";
+
+.gridcontainer, .gridcontainer3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gridcontainer2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.heroes {
+  margin: 0 0 0.5em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  display: inline-block;
+}
+.heroes li {
+  cursor: pointer;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  border-radius: 4px;
+}
+
+.heroes li p {
+  margin: auto;
+  padding-right: 1em;
+  padding-top: .2em;
+  size: 1em;
+  position: relative;
+  right: 0;
+  display: inline-block;
+  word-wrap: break-word;
+}
+
+.heroes li.selected:hover {
+  background-color: #BBD8DC !important;
+  color: white;
+}
+.heroes li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+.heroes .text {
+  position: relative;
+  top: -3px;
+}
+.heroes .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color:#405061;
+  line-height: 1em;
+  position: relative;
+  top: -.3em;
+  left: 0;
+  /*left: -.3em;
+  top: -.5em;*/
+  height: 1.8em;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
+}
+
+/* 
+.heroes .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #405061;
+  vertical-align: middle; 
+  margin: auto;
+  height: 100%;
+  margin-right: .8em;
+  border-radius: 4px 0 0 4px;
+}
+*/
+
+.example-container {
+  line-height: 1.25em;
+}
+
+.mat-table .mat-row:hover {
+  background:rgb(214, 243, 209);
+}
+
+.mat-form-field {
+  padding: 0 0.3em; 
+}
+
+.mat-column-Nature {
+  flex: 0 0 8%;
+  min-width: 61px;
+}
+
+.mat-column-Montant {
+  word-break: break-word;
+}
+
+.mat-column-Motif {
+  word-break: break-word;
+}
+
+.mat-column-Expediteur, .mat-column-Destinataire {
+  word-break: break-word;
+  flex: 0 0 20%;
+  min-width: 200px;
+}
+
+.mat-column-Date {
+  flex: 0 0 14%;
+  min-width: 130px;
+}
+
+.debit-text {
+  color: #FF3B00;
+}
+
+.credit-text {
+  color: #23B708;
+}
+
+.mat-table .mat-cell , .mat-header-cell {
+  padding: 8px 8px 8px 0;
+}
+
+.mat-table .mat-cell:first-child, .mat-header-cell:first-child {
+  padding: 8px;
+}
+
+@media screen and (max-width: 1200px) {
+  .gridcontainer3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .mat-table {
+    border: 0;
+    vertical-align: middle
+  }
+
+  .mat-table .mat-row {
+    border-bottom: 5px solid #ddd;
+    display: block;
+    height: 260px;
+  }
+
+  .contentTransactions .mat-table .mat-row {
+    height: 520px;
+  }
+
+  .mat-table .mat-cell {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 1em;
+    text-align: right;
+    padding: 0 1em 0 0;
+    font-weight: bold;
+    height:20px;
+    margin-bottom: 1em;
+  }
+  .mat-table .mat-cell:before {
+    content: attr(data-label);
+    float: left;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: .85em;
+  }
+  .mat-table .mat-cell:last-child {
+    border-bottom: 0;
+  }
+    .mat-table .mat-cell:first-child {
+    padding: 1em 1em 0 0;
+  }
+
+  .mat-column-Nature, .mat-column-Motif, .mat-column-Montant, .mat-column-Expediteur, .mat-column-ExpediteurEmail, .mat-column-Destinataire, .mat-column-DestinataireEmail, .mat-column-Date {
+    flex: inherit;
+    min-width: inherit;
+    word-break: break-word;
+  }
+
+  .mat-header-cell {
+    padding: 0;
+  }
+  
+  .mat-header-cell:first-child {
+    padding-left: 8px;
+  }
+  
+}
+
+@media screen and (max-width: 820px) {
+  .gridcontainer {
+    grid-template-columns: 1fr;
+  }
+
+  .heroes li {
+    margin: 0.5em 0;
+  }
+
+  .heroes {
+    margin: 0;
+  }
+}

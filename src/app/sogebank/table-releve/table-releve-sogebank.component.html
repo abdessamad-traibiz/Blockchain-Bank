@@ -1,0 +1,76 @@
+<div class="table-releve-content">
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" id="releve-table">
+        
+        <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID TRANSACTION </th>
+        <td mat-cell *matCellDef="let element"><a href="#"> {{formatColumnContent(element.id)}} </a></td>
+        </ng-container>
+                
+        <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> DATE </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+                
+        <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> TYPE </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        </ng-container>
+                
+        <ng-container matColumnDef="expediteur">
+        <th mat-header-cell *matHeaderCellDef> EXPÉDITEUR </th>
+        <td mat-cell *matCellDef="let element"> {{element.expediteur}} </td>
+        </ng-container>
+                
+        <ng-container matColumnDef="montant">
+        <th mat-header-cell *matHeaderCellDef> MONTANT </th>
+        <td mat-cell *matCellDef="let element" 
+            [ngClass]="element.montant.charAt(0) === '-' ? 'debit-text' : 'credit-text'">
+             {{element.montant}} 
+        </td>
+        </ng-container>
+                
+        <ng-container matColumnDef="destinataire">
+        <th mat-header-cell *matHeaderCellDef> DESTINATAIRE </th>
+        <td mat-cell *matCellDef="let element"> {{element.destinataire}} </td>
+        </ng-container>
+                
+        <ng-container matColumnDef="motif">
+        <th mat-header-cell *matHeaderCellDef> MOTIF </th>
+        <td mat-cell *matCellDef="let element">
+            <span *ngIf="formatColumnContent(element.motif).length > 16" matTooltip="{{element.motif}}"> {{formatColumnContent(element.motif)}} </span>
+            <span *ngIf="formatColumnContent(element.motif).length <= 16"> {{formatColumnContent(element.motif)}} </span>
+        </td>
+        </ng-container>
+                
+        <ng-container matColumnDef="recu" id="recu-col" *ngIf="apiService.permission === roles.COMMERCANT">
+        <th mat-header-cell *matHeaderCellDef> REÇU </th>
+        <td mat-cell *matCellDef="let element"> 
+            <button mat-icon-button (click)="downloadReceipt(element)">
+                <fa-icon [icon]="faDownload" class="download-button"></fa-icon>
+            </button>            
+        </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="empty">
+            <td mat-footer-cell *matFooterCellDef [attr.colspan]="apiService.permission === roles.COMMERCANT ? '7' : '6'">
+                <span *ngIf="!dataSource || (dataSource && dataSource.length === 0)"><strong>Aucune transaction à afficher.</strong></span>
+            </td>
+          </ng-container>
+                
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="['empty']" [ngClass]="!dataSource || (dataSource && dataSource.length === 0) ? '' : 'no-empty-text'"></tr>
+    </table>
+    
+    <div class="releves-actions">
+        <button mat-flat-button color="primary" (click)="print()">
+            <fa-icon [icon]="faPrint"></fa-icon>
+            IMPRIMER
+        </button> 
+        <button mat-flat-button color="primary" (click)="download()">
+            <fa-icon [icon]="faDownload"></fa-icon>
+            TELECHARGER
+        </button>
+    </div>
+</div>

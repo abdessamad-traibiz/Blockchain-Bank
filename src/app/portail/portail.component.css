@@ -1,0 +1,75 @@
+.portal {
+  font-family: acumin-pro;
+}
+
+.portal-content {
+  min-height: calc(100vh - 25px);
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.BRH-top-bar {
+  display: flex;
+  background-image: url(../../assets/accueil/bg-header.png);
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: cover;
+}
+
+.BRH-top-bar img {
+  margin: 12px 35px;
+}
+
+.BRH-top-bar h2 {
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  color: #171844;
+  font-size: 38px;
+}
+
+.portal-header-bar {
+  background-color: #171844;
+  font-size: 28px;
+  color: #ffffff;
+}
+
+.portal-header-bar p {
+  margin: 0;
+  padding-top: 3px;
+  padding-left: 35px;
+}
+
+.portal-body {
+  margin-left: 80px;
+  min-height: calc(100vh - 5%);
+}
+
+.portal-body h2 {
+  font-family: acumin-pro-bold;
+  margin-bottom: 0;
+}
+
+.portal-body fa-icon {
+  font-size: 18px;
+  padding-right: 10px;
+}
+
+.portal-body p {
+  font-family: acumin-pro-bold;
+  padding-left: 28px;
+  margin-top: 0;
+}
+
+.portal-body .bank-buttons {
+  display: flex;
+}
+
+.lower-bank-buttons {
+  padding-top: 15px;
+  padding-bottom: 30px;
+}

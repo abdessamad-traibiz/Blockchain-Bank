@@ -1,0 +1,128 @@
+<div>
+    <div class="titte">
+      <h1>Gérer le portefeuille principal</h1>
+    </div>
+    <div class="stat-box-purple">
+        <div class="stat-header">
+        <h2 style="margin-left:20px;margin-top:30px; color:white;padding:5px">Solde </h2>
+        </div>
+        <h2 style="margin-left:20px;margin-top:10px;margin-bottom: 30px; color:white"> {{soldeTotal}} DHTG</h2>
+    </div>
+   <!-- 
+      <div class="infos-brh">
+      <p style="margin:20px; color:white">Solde : {{soldeTotal}} DHTG</p>
+      </div> 
+    -->
+    <div class="dashboard-content">
+        <button class="nouvelBanque" mat-raised-button (click)="openAddBankDialog(AddDialog)">Augmenter mes avoirs
+   
+            <ng-template #AddDialog>
+               <div class="contact-dialog">
+                   <div class="dialog-header">
+                       <h4>Augmenter mes avoirs</h4>
+                       <hr class="titre_fenetre">
+                   </div>
+                   <div class="contact-dialog-form">
+                       <mat-form-field>
+                           <input matInput type="number" placeholder="Saisir la quantité" [(ngModel)]="quantite" >
+                       </mat-form-field>
+                       <mat-form-field>
+                        <input matInput  type="password" placeholder="Saisir le mot de passe" [(ngModel)]="password" >
+                    </mat-form-field>
+                            
+                   </div>
+                   <div class="dialog-buttons">
+                       <button mat-flat-button class="boutonConfirmer" (click)="confirmAddMonnie()">Confirmer</button> 
+                       <button mat-flat-button class="boutonAnnuler" (click)="cancelAddMonnie()">Annuler</button> 
+                   </div>
+               </div>
+           </ng-template>
+      </button>
+      <hr>
+    </div>
+    <div class="block-virement" style="margin-left: 10%">
+        <h3>
+          Effectuer un virement
+        </h3>
+        <h4>
+            Depuis le portefeuille principal :
+        </h4>
+        <div class="infos-virement">
+            <p> Solde : {{solde}} </p>
+            
+        </div>
+        <h4>
+            Vers le portefeuille :
+        </h4>
+        <mat-form-field>
+          <mat-label>Sélectionner une banque</mat-label>
+          <mat-select #banqueValue (selectionChange)="changeBanque($event.value)">
+            <mat-option *ngFor="let banque of listBanqueValid" [value]="banque.NomCommercial" >
+              {{banque.NomCommercial}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="virements-form">
+            <mat-form-field>
+                <input matInput type="number" placeholder="Montant" [(ngModel)]="transferAmount" min="1" oninput="validity.valid||(value='1')">
+            </mat-form-field>
+        </div>
+        <button mat-flat-button color="primary" class="confirm-button" (click)="openConfirmDialog(ConfirmDialog)" 
+        [disabled]="checkConfirmState()" style="margin-bottom: 20px;">
+        CONFIRMER
+    </button>
+    
+    <ng-template #ConfirmDialog>
+        <div class="confirm-dialog">
+            <div class="dialog-header">
+                <h2>Confirmer le virement</h2>
+                <hr>
+            </div>
+            <div class="dialog-content">
+                <div class="dialog-info-left">
+                    <div class="dialog-info">
+                        <p>De :</p>
+                        <p><strong>{{ portefeuillePrincipale }}</strong></p>   
+
+                        <hr>
+                    </div>
+                    <div class="dialog-info">
+                        <p>Montant débité :</p>
+                    <p><strong>{{transferAmount}} DHTG</strong></p>  
+
+                        <hr>
+                    </div>
+                    <div class="dialog-info">
+                        <p>Date du virement :</p>
+                        <p><strong></strong></p>
+                  <!--      <p><strong>{{dialogProperties.date}}</strong></p>  -->
+
+                    </div>
+                </div>
+                <div class="dialog-info-right">
+                    <div class="dialog-info">
+                        <p>Vers : </p>
+                        <p><strong>{{banqueNomSelected}}</strong></p>
+
+                        <hr>
+                    </div>
+                    <div class="dialog-info">
+                        <p>Solde après opération :</p>
+                   <!--     <p><strong>{{dialogProperties.afterTransfer}} DHTG</strong></p>
+                   -->     <p><strong>{{(soldeTotal - transferAmount)}} DHTG</strong></p>
+
+                        <hr>
+                    </div>
+                   
+                </div>
+            </div>
+            
+            <div class="dialog-buttons">
+                <button mat-flat-button class="dialog-confirm-button" (click)="confirmTransferTo()">Confirmer</button> 
+                <button mat-flat-button class="dialog-cancel-button" (click)="cancelTransfer()">Annuler</button> 
+            </div>
+        </div>
+    </ng-template> 
+    </div>
+</div>
+  

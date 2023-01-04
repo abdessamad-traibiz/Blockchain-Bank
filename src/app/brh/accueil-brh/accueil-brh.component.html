@@ -1,0 +1,44 @@
+<div id="fakebody">
+<header id="showcase" class="grid">
+  <a routerLink="/portail">
+    <div class="theheader">
+      <div class="BRH-top-bar"></div>
+      <h1>Bienvenue a la BRH</h1>
+    </div>
+  </a>
+  <div class="thesecondheader">
+    <h2>Banque de la république d'Haïti</h2>
+  </div>
+
+  <h3>Connexion au site web de la Banque de la République d’Haïti</h3>
+</header>
+
+<main id="main">
+  <section id="section-a" class="grid">
+    <ul>
+      <li>
+        <div class="box">
+            <h2 class="content-title">
+                Employé de la BRH
+            </h2>
+            <a  routerLink="/brh/login-brh" href="#section-b" class="btn">Connection</a>
+        </div>
+      </li>
+      <li id="addmargin">
+        <div class="box">
+            <h2 class="content-title">
+                Institution financière
+            </h2>
+            <a routerLink="/brh/banque/login" href="#section-b" class="btn">Connection</a>
+        </div>
+      </li>
+    </ul>
+  </section>
+</main>
+<br>
+<div class="box">
+    Cliquer ici pour <a  routerLink="/brh/demande-habilitation" href="#section-b">Demander une habilitation</a>
+</div>
+<div class="push"></div>
+</div>
+<app-accueil-footer></app-accueil-footer>

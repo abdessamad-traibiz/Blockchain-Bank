@@ -1,0 +1,32 @@
+<div class="portal">
+  <div class="portal-content">
+    <div class="portal-header">
+        <div class="BRH-top-bar">
+            <img src="assets/accueil/brh_logo.png" alt="BRH logo" height="80" width="160">
+            <h2>Banque de la république d'Haïti</h2>
+        </div>
+        <div class="portal-header-bar">
+          <p>Portail numérique des banques Haïtiennes acceptant le Digital HaïTian Gourde (DHTG)</p>
+        </div>
+      </div>
+
+      <div class="portal-body">
+          <h2><fa-icon [icon]="faPlay"></fa-icon>Je suis une institution financière ou employé de la BRH</h2>
+          <p>Connexion au site web de la Banque de la République d’Haïti</p>
+          <app-bank-button [name]="brh.name" [url]="brh.url" [image]="brh.image"></app-bank-button>
+
+          <h2><fa-icon [icon]="faPlay"></fa-icon>Je suis une particulier ou commerçant</h2>
+          <p>Connexion au site web d’une institution financière</p>
+          <div *ngFor="let bank of banks; let index = index">
+            <div *ngIf="index % 4 == 0" class="bank-buttons" [ngClass]="index > 0 ? 'lower-bank-buttons' : ''">
+              <app-bank-button [name]="bank.name" [url]="bank.url" [image]="bank.image"></app-bank-button>
+              <app-bank-button *ngIf="index + 1 < banks.length" [name]="banks[index + 1].name" [url]="banks[index + 1].url" [image]="banks[index + 1].image"></app-bank-button>
+              <app-bank-button *ngIf="index + 2 < banks.length" [name]="banks[index + 2].name" [url]="banks[index + 2].url" [image]="banks[index + 2].image"></app-bank-button>
+              <app-bank-button *ngIf="index + 3 < banks.length" [name]="banks[index + 3].name" [url]="banks[index + 3].url" [image]="banks[index + 3].image"></app-bank-button>
+            </div>
+          </div>
+
+      </div>
+    </div>
+</div>
+<app-accueil-footer></app-accueil-footer>

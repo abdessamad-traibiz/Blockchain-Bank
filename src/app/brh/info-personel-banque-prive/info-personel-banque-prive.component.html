@@ -1,0 +1,100 @@
+<div *ngIf="!showForClient && !showPassword && !showConfirm">
+  <div class="info-form">
+    <mat-form-field>
+      <input matInput [placeholder]="data.name" [formControl]="valueFC" [value]="data.value">
+      <mat-error *ngIf="valueFC.hasError('required')">
+        Ce champ est <strong>requis</strong>
+      </mat-error>
+    </mat-form-field>
+    <button mat-flat-button (click)="validate()" color="primary" class="primary-login-button"
+      [disabled]="valueFC.invalid">VALIDER</button>
+    <button mat-flat-button (click)="onNoClick()" color="accent" class="primary-login-button">ANNULER</button>
+  </div>
+</div>
+<div *ngIf="showForClient && data.clientChamp !== 'Status' && data.clientChamp !== 'StatusClient' && !showConfirm">
+  <div class="info-form">
+    <mat-form-field>
+      <input matInput [placeholder]="data.clientChamp" [formControl]="valueFC" [value]="data.client[data.clientChamp]">
+      <mat-error *ngIf="valueFC.hasError('required')">
+        Ce champ est <strong>requis</strong>
+      </mat-error>
+    </mat-form-field>
+    <button mat-flat-button (click)="validate()" color="primary" class="primary-login-button"
+      [disabled]="valueFC.invalid">VALIDER</button>
+    <button mat-flat-button (click)="onNoClick()" color="accent" class="primary-login-button">ANNULER</button>
+  </div>
+</div>
+<div *ngIf="showForClient && data.clientChamp === 'Status' && !showConfirm">
+  <div class="info-form">
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <mat-select [formControl]="valueFC" required [value]="data.client[data.clientChamp]">
+        <mat-option *ngFor="let role of roles" [value]="role">
+          {{role}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-flat-button (click)="validate()" color="primary" class="primary-login-button"
+    [disabled]="valueFC.invalid">VALIDER</button>
+    <button mat-flat-button (click)="onNoClick()" color="accent" class="primary-login-button">ANNULER</button>
+  </div>
+</div>
+<div *ngIf="showForClient && data.clientChamp !== 'Status' && data.clientChamp === 'StatusClient' && !showConfirm">
+  <div class="info-form">
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select [formControl]="valueFC" required [value]="data.client[data.clientChamp]">
+        <mat-option *ngFor="let st of statuses" [value]="st">
+          {{st}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-flat-button (click)="validate()" color="primary" class="primary-login-button"
+    [disabled]="valueFC.invalid">VALIDER</button>
+    <button mat-flat-button (click)="onNoClick()" color="accent" class="primary-login-button">ANNULER</button>
+  </div>
+</div>
+<div *ngIf="showPassword">
+  <div class="info-form">
+      <mat-form-field>
+          <input matInput placeholder="Mot de passe courant" type="password" [formControl]="valueFC">
+          <mat-error *ngIf="valueFC.hasError('required')">
+            Ce champ est <strong>requis</strong>
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Nouveau mot de passe" type="password" [formControl]="passwordFC">
+          <mat-error *ngIf="passwordFC.hasError('required')">
+            Ce champ est <strong>requis</strong>
+          </mat-error>
+          <mat-error *ngIf="passwordFC.hasError('minlength')">
+            Le mot de passe doit contenir au moins 6 caractères
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Confirmer le Nouveau mot de passe" type="password" [formControl]="passwordConfirmFC">
+          <mat-error *ngIf="passwordConfirmFC.hasError('required')">
+            Ce champ est <strong>requis</strong>
+          </mat-error>
+          <mat-error *ngIf="passwordConfirmFC.hasError('minlength')">
+            Le mot de passe doit contenir au moins 6 caractères
+          </mat-error>
+      </mat-form-field>
+    <br><br>
+    <button mat-flat-button (click)="update()" color="primary" class="primary-login-button"
+      [disabled]="passwordFC.invalid || passwordConfirmFC.invalid || passwordFC.value !== passwordConfirmFC.value">VALIDER</button>
+    <button mat-flat-button (click)="onNoClick()" color="primary" class="primary-login-button">ANNULER</button>
+    <br><br>
+    <mat-error *ngIf="passwordFC.value !== passwordConfirmFC.value">
+        Les deux mot de passes ne sont pas identiques
+    </mat-error>
+    <br>
+  </div>
+</div>
+<div *ngIf="showConfirm">
+  <p>Voulez vous vraiment changer le champ <strong>{{data.clientChamp === 'Status' ? 'Role' : data.name}}</strong> 
+    <br> de la valeur <span style="color:red"><strong>{{data.clientChamp === 'Status' ? data.client.Status : data.clientChamp === 'StatusClient' ? data.client.StatusClient : data.value}}</strong>
+    </span><br> a la valeur <span style="color:green"><strong>{{valueFC.value}}</strong></span> ?</p>
+  <button mat-flat-button (click)="onNoClick()" color="accent" class="primary-login-button">ANNULER</button>
+  <button mat-flat-button (click)="update()" color="primary" class="primary-login-button">VALIDER</button>
+</div>

@@ -1,0 +1,54 @@
+.nouvelBanque{
+    background-color:rgb(17, 184, 128);
+    margin-bottom: 1%;
+    margin-top: 3%;
+}
+.restaurBanque{
+    margin-left: 0.1%;
+    background-color: rgb(17, 184, 128);
+}
+.bouttonSuprimer{
+    background-color:red;
+}
+.bouttonEditer{
+    background-color:rgb(93, 15, 238);
+}
+.bouttonValider{
+    background-color:rgb(141, 221, 11);
+}
+.boutonConfirmer{
+    background-color: rgb(37, 182, 37);
+    border-radius: 10px;
+}
+.boutonAnnuler{
+    margin-left: 2%;
+    background-color: #acb625;
+    border-radius: 10px;
+}
+th, td {
+    text-align: center !important;
+}
+::ng-deep table {
+    width: 100%;
+}
+.dialog-buttons {
+    justify-content: space-around;
+    display: flex;
+    width: 70%;
+    align-self: center;
+    margin-top: 25px;
+    margin-left: 15%;
+}
+
+.dialog-buttons button {
+    border-radius: 50px;
+    padding: 5px 16px;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+.dialog-confirm-button {
+    background-color: #23B708;
+}
+.dialog-cancel-button {
+    background-color: #FF3B00;
+}

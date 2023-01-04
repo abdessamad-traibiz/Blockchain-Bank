@@ -1,0 +1,35 @@
+.releves-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.releve-selector {
+    display: flex;
+    justify-content: space-between;
+}
+
+.releve-selector {
+    width: 80%;
+}
+
+app-table-releve-sogebank {
+    width: 85%;
+}
+
+.wallet-selector {
+    width: 30%;
+}
+
+.start-picker {
+    margin-right: 15px;
+}
+
+::ng-deep table {
+    width: 100%;
+}
+
+.releves-content ::ng-deep table {
+    padding-top: 0;
+}

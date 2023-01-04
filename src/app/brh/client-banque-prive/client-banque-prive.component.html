@@ -1,0 +1,144 @@
+<div class="content">
+  <h2>Client en detail:</h2>
+  <div class="gridcontainer">
+    <ul class="heroes">
+      <li (click)="updateStatus('email', 'Email', selectedClient)"><span class="badge">Email</span>
+        <p>{{selectedClient.Email}}</p>
+      </li>
+      <li (click)="updateStatus('nom', 'Nom', selectedClient)"><span class="badge">Nom</span>
+        <p>{{selectedClient.Nom}}</p>
+      </li>
+      <li (click)="updateStatus('prenom', 'Prenom', selectedClient)"><span class="badge">Prenom</span>
+        <p>{{selectedClient.Prenom}}</p>
+      </li>
+    </ul>
+    <ul class="heroes">
+      <li (click)="updateStatus('adresse', 'Adresse', selectedClient)"><span class="badge">Adresse</span>
+        <p>{{selectedClient.Adresse}}</p>
+      </li>
+      <li (click)="updateStatus('ville', 'Ville', selectedClient)"><span class="badge">Ville</span>
+        <p>{{selectedClient.Ville}}</p>
+      </li>
+      <li (click)="updateStatus('codePostal', 'Code_Postal', selectedClient)"><span class="badge">Code_Postal</span>
+        <p>{{selectedClient.Code_Postal}}</p>
+      </li>
+    </ul>
+    <ul class="heroes">
+      <li (click)="updateStatus('civilite', 'Civilite', selectedClient)"><span class="badge">Civilite</span>
+        <p>{{selectedClient.Civilite}}</p>
+      </li>
+      <li (click)="updateStatus('profession', 'Profession', selectedClient)"><span class="badge">Profession</span>
+        <p>{{selectedClient.Profession}}</p>
+      </li>
+      <li (click)="updateStatus('siret', 'Siret', selectedClient)"><span class="badge">Siret</span>
+        <p>{{selectedClient.Siret}}</p>
+      </li>
+    </ul>
+    <ul class="heroes">
+      <li (click)="updateStatus('situationFamiliale', 'Situation_Familiale', selectedClient)"><span
+          class="badge">Situation_Familiale</span>
+        <p>{{selectedClient.Situation_Familiale}}</p>
+      </li>
+      <li (click)="updateStatus('tel', 'Tel', selectedClient)"><span class="badge">Tel</span>
+        <p>{{selectedClient.Tel}}</p>
+      </li>
+      <li (click)="updateStatus('status', 'Status', selectedClient)"><span class="badge">Role</span>
+        <p>{{selectedClient.Status}}</p>
+      </li>
+    </ul>
+    <ul class="heroes">
+      <li><span
+          class="badge">Email Verifie?</span>
+        <p>{{selectedClient.IsEmailVerified === true ? 'Oui' : 'Non'}}</p>
+      </li>
+      <li (click)="updateStatus('status', 'StatusClient', selectedClient)"><span class="badge">Status</span>
+        <p>{{selectedClient.StatusClient}}</p>
+      </li>
+      <li><span class="badge">Echecs de login</span>
+        <p>{{selectedClient.LoginAttempts}}</p>
+      </li>
+    </ul>
+  </div>
+  <h2 style="display: inline-block;padding-right: 2em;">Cartes: {{cartes ? cartes.length : 0}}</h2>
+  <button style="vertical-align: super;" mat-flat-button color="primary" class="new-button" (click)="openNewCardDialog(NewCardDialog)">
+      <fa-icon [icon]="faPlusCircle"></fa-icon>
+      NOUVELLE CARTE
+  </button>
+  <div *ngIf="showCartes && cartes.length === 0"> Le client {{selectedClient.Nom}} n'a pas des cartes</div>
+  <div *ngIf="showCartes" class="gridcontainer3">
+      <div *ngFor="let carte of cartes" style="word-break: break-word;">
+          <app-common-carte (clientDeleted)="handleClientCardDelete($event)" [card]="carte"></app-common-carte>
+      </div>
+  </div>
+  <app-document-banque-prive [setClient]="selectedClient"></app-document-banque-prive>
+  <h2>Portefeuilles: {{selectedClient.Portefeuille.length}}</h2>
+  <app-common-loading-animation *ngIf="loading" class="theLoader"></app-common-loading-animation>
+  <br *ngIf="loading">
+  <div class="example-container mat-elevation-z8">
+    <mat-table class="clients-table mat-elevation-z8" #sortClient="matSort" [dataSource]="selectedClientPortefeuilles"
+      matSort>
+
+      <ng-container matColumnDef="Id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+        <mat-cell *matCellDef="let client" data-label="Id">{{client.Id}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="ClePub">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>ClePub</mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let client" data-label="ClePub">{{client.ClePub}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Libelle">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Libelle</mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let client" data-label="Libelle">{{client.Libelle}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Ouverture">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Ouverture</mat-header-cell>
+        <mat-cell class="duration-cell" *matCellDef="let client" data-label="Status">{{client.Ouverture}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+      <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"
+        [style.background]="selectedPortefeuille && selectedPortefeuille.ClePub === row.ClePub ? 'lightgreen' : ''"></mat-row>
+    </mat-table>
+  </div>
+  <br>
+  <div *ngIf="showTransactions">
+    <app-transaction-table-banque-prive [transactions]="transactions" [selectedSolde]="selectedSolde"
+      [selectedDebit]="selectedDebit" [selectedCredit]="selectedCredit"></app-transaction-table-banque-prive>
+  </div>
+
+  <ng-template #NewCardDialog>
+      <div class="new-card-dialog">
+          <div class="dialog-header">
+              <h2>Creer une nouvelle carte</h2>
+              <h4>Pour le client {{selectedClient.Nom}}</h4>
+              <hr>
+          </div>
+          <div class="dialog-warning">
+              <fa-icon [icon]="faExclamationTriangle"></fa-icon>
+              <p>Attention : Cette opération ne débitera pas le client</p>
+          </div>
+          <div class="new-card-dialog-form">
+              <mat-form-field>
+                  <input matInput placeholder="Saisir un libellé pour la nouvelle carte…" [(ngModel)]="newCardlibelle">
+              </mat-form-field>
+              <mat-form-field>
+                      <mat-label>Portefeuille rattaché</mat-label>
+                      <mat-select [(value)]="newCardSelectedWallet">
+                          <mat-option *ngFor="let portefeuille of selectedClient.Portefeuille" [value]="portefeuille">
+                              {{portefeuille.Libelle}}
+                          </mat-option>
+                      </mat-select>
+              </mat-form-field>
+          </div>
+         <div class="dialog-buttons">
+              <button mat-flat-button class="dialog-confirm-button" (click)="confirmCardCreate()">Confirmer</button> 
+              <button mat-flat-button class="dialog-cancel-button" (click)="cancelCardCreate()">Annuler</button> 
+          </div>
+      </div>
+  </ng-template>
+
+</div>
